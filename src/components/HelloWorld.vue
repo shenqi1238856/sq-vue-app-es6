@@ -3,9 +3,19 @@ import { ref } from 'vue'
 
 defineProps({
   msg: String,
+  msg2: {
+    type: String,
+    default: 'Hello World 2'
+  },
+  msg3: {
+    type: String,
+    default: 'Hello World 3'
+  }
 })
 
-const count = ref(0)
+const count = ref(0);
+const msg = ref('Hello World 111');
+
 </script>
 
 <template>

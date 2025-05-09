@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>script load failed test page</title>
+    <script>
+        const domains=[
+            'sss.com',
+            'qqq.com',
+            'jjj.com'
+        ];
+        const retry = {};
+        // 事件的传播模型
+        window.addEventListener('error', (e)=>{
+            console.log(e);
+            if(e instanceof ErrorEvent || e.target.tagName !== 'SCRIPT'){
+               return;
+            }
+
+            const src= e.target.src;
+            const url= new URL(src);
+            const key = url.pathname;
+            if(!(key in retry)){
+                retry[key]= 0;
+            }
+            const index = retry[key];
+            if(index >= domains.length){
+                return;
+            } 
+            const host = domains[index];
+            retry[key]++;
+            url.host = host;
+            // 阻塞
+document.write(`\<script src="${url}"><\/script>`);
+    // 非阻塞
+            // const script = document.createElement('script');
+            // script.src = url.toString();
+            // e.target.parentElement.insertBefore(script,e.target);
+            // e.target.remove();
+            // console.log(url.toString());
+        }, true);
+    </script>
+  </head>
+  <body>
+    <h5>script load failed test page</h5>
+    <script onerror="console.error('Script failed to load: 1.js')" src="../core/testjs/1.js"></script>
+    <script src="../core/testjs/4.js"></script>
+    <script onerror="console.error('Script failed to load: 3.js')" src="../core/testjs/3.js"></script>
+    <!-- <script>
+        throw new Error('Script load failed ErrorEvent');
+    </script> -->
+    <!-- <img src="../core/testjs/3.icon"  /> -->
+  </body>
+</html>
