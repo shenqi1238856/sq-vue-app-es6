@@ -6,3 +6,5 @@ Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://
 
 
 npm create vite@latest sq-vue-app-es6
+
+git clone https://github.com/shenqi1238856/sq-vue-app-es6.git
