@@ -8,3 +8,5 @@ Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://
 npm create vite@latest sq-vue-app-es6
 
 git clone https://github.com/shenqi1238856/sq-vue-app-es6.git
+
+chrome.exe --host-rules="MAP github.com octocaptcha.com, MAP github.githubassets.com yelp.com, MAP *.githubusercontent.com githubusercontent.com" --host-resolver-rules="MAP octocaptcha.com 20.27.177.113, MAP yelp.com 199.232.240.116, MAP githubusercontent.com 199.232.176.133"
